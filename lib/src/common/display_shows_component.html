@@ -1,0 +1,20 @@
+<div class="container">
+    <br>
+    <div class="row">
+        <div *ngFor="let show of shows; let i=index">
+            <div class="col-md-3">
+                <a [routerLink]="showUrl(show?.name)">
+                    <img src="{{show?.posterUrl}}" alt="Card image cap" title="{{show?.name}}">
+                </a>
+                <p></p>           
+                <div *ngIf="token!=''">
+                    <div *ngIf="userList != null && !userList?.contains(show?.name)">
+                        <button *ngIf="!added || selected!=show?.name" class="btn" (click)="addToList(show)">Add to list</button>
+                        <span *ngIf="(added) && (selected==show?.name)">Added</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="i%4==0"></div>
+        </div>
+    </div>
+</div>

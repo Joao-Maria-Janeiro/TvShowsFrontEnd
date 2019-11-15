@@ -1,0 +1,61 @@
+<div class="container">
+  <h2>{{show?.name}}</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <img style="width:300px" src="{{show?.posterUrl}}" alt="">
+    </div>
+    <div class="col-md-6">
+      {{show?.overview}}
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-4">
+      Original language: {{show?.language}}
+    </div>
+    <div class="col-sm-4">
+      Score: {{show?.score}}/10
+    </div>
+    <div class="col-sm-4">
+      ratings: {{show?.numberOfVotes}}
+    </div>
+  </div>
+</div>
+
+ <div class="container">
+   <div *ngIf="token!=''">
+      <div *ngIf="userList != null && !userList?.contains(show?.name)">
+          <button *ngIf="!added" class="btn" (click)="addToList(show)">Add to list</button>
+          <span *ngIf="added">Added</span>
+      </div>
+    </div>
+</div>
+
+
+<div class="container" *ngIf="show!=null">
+  <span *ngFor="let network of show.networks">
+    <img style="width:50px; margin-right:10px;" src="{{network}}">
+  </span>
+</div>
+<br>
+<div class="container" *ngIf="show!=null">
+  <div *ngFor="let episodes of show.episodesPerSeason">
+    <a (click)="getSeason(episodes['name'])" class="btn btn-primary" data-toggle="collapse" href="#showEpisodes" role="button" aria-expanded="false" aria-controls="showEpisodes">
+      Season {{episodes['name']}}: {{episodes['episodes']}}
+    </a>
+    
+    <div class="collapse" id="showEpisodes" *ngIf="selected==episodes['name']">
+      <div class="card card-body">
+      
+        <span *ngFor="let episode of season">
+          {{episode}}
+        </span>
+      
+      </div>
+    </div>
+    
+    <br>
+  </div>
+</div>
+
+<br>

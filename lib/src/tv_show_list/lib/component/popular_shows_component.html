@@ -1,0 +1,16 @@
+<div class="container">
+  <h2>Popular shows</h2>
+</div>
+<display-shows [listShows]="shows"></display-shows>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <button class="btn" (click)="pageDown()">Previous page</button>
+    </div>
+    <div class="col-sm-6">
+      <button class="btn" style="float:right;" (click)="pageUp()">Next page</button>
+    </div>
+  </div>
+  <br>
+</div>

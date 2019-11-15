@@ -1,0 +1,17 @@
+<div class="container">
+  <div *ngIf="results.length == 0">
+    <div id="search-component">
+      <input #searchBox id="search-box"
+            (change)="search(searchBox.value)"
+            (keyup)="search(searchBox.value)" />
+      <a (click)="gotoResult(searchBox.value)"><button type="button" class="btn" name="button">Search</button></a>
+      <div>
+        <div *ngFor="let show of shows | async"
+            (click)="gotoDetail(show)" class="search-result" >
+          <img style="width:100px;" src="{{show?.posterUrl}}">
+          {{show?.name}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
